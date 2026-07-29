@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<!--
+  ==========================================================================
+  PÁGINA WEB DE EJEMPLO PARA SU NEGOCIO
+  ==========================================================================
+ 
+
+  El negocio de ejemplo que usammos aquí es una panadería llamada
+  "Panadería Trigo Dorado", pero usted puede cambiar el nombre, los textos,
+  las imágenes, los colores y los productos por los de ssu propio proyecto.
+
+  En todo archivo encontrará comentarios como este, explicándole
+  para qué sirve cada parte. Los comentarios en HTML se escriben así:
+  <!--  esto es un comentario y el navegador NO lo muestra en la página  -->
+  <!--Puede dejarlos mientras aprende, y borrarlos después si lo desea.
+  ==========================================================================-->
+
+<html lang="es">
+<!-- lang="es" le indica al navegador y a los buscadores que el contenido está en español -->
+
+<head>
+  <!--
+    La etiqueta <head> no se muestra en la página. Aquí va la información
+    "de fondo": el título de la pestaña, la codificación de texto, los
+    estilos (CSS) y otros metadatos.
+  -->
+
+  <meta charset="UTF-8">
+  <!-- Esto permite que las tildes y la "ñ" se vean correctamente -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Esto hace que la página se adapte al tamaño de pantalla de un celular -->
+
+  <title>Cafetería El Sabor del Arte</title>
+  <!-- Este texto aparece en la pestaña del navegador. Cámbielo por el nombre de su negocio -->
+
+  <meta name="description" content="Cafetería El Sabor del Arte en Cantón Simocol, Nebaj. Un espacio de tranquilidad, café frío y caliente, biblioteca y melodías elegantes.">
+  
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /*
+      ======================================================================
+      ESTILOS (CSS)
+      ======================================================================
+      El CSS controla los colores, tamaños, espacios y la apariencia general.
+      Aquí definimos "variables" con los colores del negocio, para que usted
+      pueda cambiar el color en UN solo lugar y toda la página se actualice.
+    */
+        :root {
+      --color-fondo: #121212;             
+      --color-superficie: #1A1816;        
+      --color-texto: #EAE6DF;             
+      --color-primario: #2D2420;          
+      --color-primario-hover: #453832;    
+      --color-acento: #D4AF37;            
+      --color-acento-claro: rgba(212, 175, 55, 0.12); 
+      --color-blanco: #FFFFFF;            
+      --fuente-titulos: 'Playfair Display', serif;
+      --fuente-texto: 'Plus Jakarta Sans', sans-serif;
+      --radio-borde: 14px;
+      --sombra-elegante: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+      --transicion: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--fuente-texto);
+      color: var(--color-texto);
+      background-color: var(--color-fondo);
+      line-height: 1.7;
+      scroll-behavior: smooth;
+    }
+
+    h1, h2, h3 {
+      font-family: var(--fuente-titulos);
+      font-weight: 600;
+      color: var(--color-blanco); /* Blanco para destacar títulos principales */
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .contenedor {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ---------------------------------------------------------------------
+       BARRA DE NAVEGACIÓN
+       --------------------------------------------------------------------- */
+    header.barra-navegacion {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: rgba(18, 18, 18, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+    }
+
+    .nav-interna {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 32px;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .logo-negocio {
+      font-family: var(--fuente-titulos);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--color-acento);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .menu-links {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      list-style: none;
+      align-items: center;
+    }
+
+    .menu-links a {
+      padding: 8px 14px;
+      border-radius: var(--radio-borde);
+      font-weight: 500;
+      font-size: 0.88rem;
+      color: var(--color-texto);
+      transition: var(--transicion);
+    }
+
+    .menu-links a:hover {
+      background-color: var(--color-acento-claro);
+      color: var(--color-acento);
+    }
+
+    /* ---------------------------------------------------------------------
+       SECCIÓN "HERO"
+       --------------------------------------------------------------------- */
+    .hero {
+      padding: 90px 32px 70px;
+      background: radial-gradient(circle at 85% 15%, rgba(212, 175, 55, 0.1), transparent 50%),
+                  linear-gradient(180deg, #121212 0%, #1A1816 100%);
+    }
+
+    .hero-interna {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .hero-etiqueta {
+      display: inline-block;
+      background-color: var(--color-acento-claro);
+      color: var(--color-acento);
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.3rem, 4vw, 3.4rem);
+      margin-bottom: 20px;
+      color: var(--color-blanco);
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 48ch;
+      margin-bottom: 30px;
+      color: var(--color-texto-suave);
+    }
+
+    .grupo-botones {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .boton {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 26px;
+      border-radius: var(--radio-borde);
+      font-weight: 600;
+      font-size: 0.92rem;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: var(--transicion);
+    }
+
+    .boton:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    }
+
+    .boton-principal {
+      background-color: var(--color-acento);
+      color: #121212;
+    }
+    .boton-principal:hover {
+      background-color: #f3c653;
+    }
+
+    .boton-secundario {
+      background-color: transparent;
+      border-color: var(--color-acento);
+      color: var(--color-acento);
+    }
+    .boton-secundario:hover {
+      background-color: rgba(212, 175, 55, 0.1);
+    }
+
+    .boton-whatsapp {
+      background-color: #25D366;
+      color: #FFFFFF;
+    }
+    .boton-whatsapp:hover {
+      background-color: #1EBE57;
+    }
+
+    .hero-imagen {
+      border-radius: var(--radio-borde);
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      box-shadow: var(--sombra-elegante);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .hero-imagen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .hero-imagen:hover img {
+      transform: scale(1.03);
+    }
+
+    /* ---------------------------------------------------------------------
+       SECCIÓN "SOBRE NOSOTROS"
+       --------------------------------------------------------------------- */
+    section {
+      padding: 80px 32px;
+    }
+
+    .titulo-seccion {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 50px;
+    }
+
+    .titulo-seccion .eyebrow {
+      display: block;
+      color: var(--color-acento);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.76rem;
+      margin-bottom: 10px;
+    }
+
+    .titulo-seccion h2 {
+      font-size: clamp(2rem, 3.2vw, 2.6rem);
+      color: var(--color-blanco);
+      margin-bottom: 12px;
+    }
+
+    .sobre-nosotros {
+      background-color: var(--color-superficie);
+    }
+
+    .sobre-interna {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .lista-valores {
+      list-style: none;
+      margin-top: 20px;
+    }
+    .lista-valores li {
+      padding-left: 28px;
+      position: relative;
+      margin-bottom: 12px;
+      font-weight: 500;
+      color: var(--color-texto);
+    }
+    .lista-valores li::before {
+      content: "●";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 0.85rem;
+    }
+
+    /* ---------------------------------------------------------------------
+       SECCIÓN DE BENEFICIOS / EXPERIENCIA
+       --------------------------------------------------------------------- */
+    .experiencia {
+      background-color: var(--color-fondo);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .cuadricula-beneficios {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .tarjeta-beneficio {
+      background-color: var(--color-superficie);
+      border-radius: var(--radio-borde);
+      padding: 36px 28px;
+      box-shadow: var(--sombra-elegante);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: var(--transicion);
+    }
+    .tarjeta-beneficio:hover {
+      transform: translateY(-4px);
+      border-color: var(--color-acento);
+    }
+
+    .tarjeta-beneficio .icono-beneficio {
+      font-size: 2.5rem;
+      margin-bottom: 18px;
+    }
+
+    .tarjeta-beneficio h3 {
+      font-size: 1.25rem;
+      color: var(--color-acento);
+      margin-bottom: 10px;
+    }
+
+    .tarjeta-beneficio p {
+      color: var(--color-texto-suave);
+      font-size: 0.92rem;
+    }
+
+    /* ---------------------------------------------------------------------
+       SECCIÓN "PRODUCTOS"
+       --------------------------------------------------------------------- */
+    .productos {
+      background-color: var(--color-superficie);
+    }
+
+    .categoria-menu {
+      max-width: 1200px;
+      margin: 0 auto 60px;
+    }
+    .categoria-menu:last-child {
+      margin-bottom: 0;
+    }
+
+    .subtitulo-categoria {
+      font-size: 1.5rem;
+      color: var(--color-acento);
+      margin-bottom: 24px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid rgba(212, 175, 55, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cuadricula-productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .tarjeta-producto {
+      background-color: var(--color-fondo);
+      border-radius: var(--radio-borde);
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      transition: var(--transicion);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .tarjeta-producto:hover {
+      transform: translateY(-5px);
+      border-color: var(--color-acento);
+      box-shadow: 0 14px 30px -10px rgba(212, 175, 55, 0.15);
+    }
+
+    .tarjeta-producto .imagen-producto {
+      aspect-ratio: 16 / 10;
+      background-color: #25221e;
+      overflow: hidden;
+    }
+    .tarjeta-producto .imagen-producto img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .tarjeta-producto:hover .imagen-producto img {
+      transform: scale(1.05);
+    }
+
+    .info-producto {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .info-producto h3 {
+      font-size: 1.12rem;
+      margin-bottom: 6px;
+      color: var(--color-blanco);
+    }
+
+    .info-producto p {
+      color: var(--color-texto-suave);
+      font-size: 0.88rem;
+      margin-bottom: 16px;
+      flex-grow: 1;
+    }
+
+    .fila-precio {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 12px;
+    }
+
+    .precio {
+      font-family: var(--fuente-titulos);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--color-acento);
+    }
+
+    .boton-comprar {
+      background-color: var(--color-acento);
+      color: #121212;
+      padding: 7px 14px;
+      border-radius: var(--radio-borde);
+      font-weight: 600;
+      font-size: 0.82rem;
+      border: none;
+      cursor: pointer;
+      transition: var(--transicion);
+    }
+    .boton-comprar:hover {
+      background-color: var(--color-blanco);
+      color: #121212;
+    }
+
+    /* ---------------------------------------------------------------------
+       SECCIÓN "TESTIMONIOS"
+       --------------------------------------------------------------------- */
+    .testimonios {
+      background-color: var(--color-fondo);
+      color: #FFFFFF;
+      position: relative;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .testimonios .titulo-seccion h2 {
+      color: var(--color-blanco);
+    }
+    .testimonios .titulo-seccion .eyebrow {
+      color: var(--color-acento);
+    }
+
+    .cuadricula-testimonios {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .tarjeta-testimonio {
+      background-color: var(--color-superficie);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radio-borde);
+      padding: 24px;
+      backdrop-filter: blur(6px);
+    }
+
+    .tarjeta-testimonio.especial {
+      border-color: var(--color-acento);
+      background-color: rgba(212, 175, 55, 0.06);
+    }
+
+    .tarjeta-testimonio p.cita {
+      font-style: italic;
+      font-size: 0.98rem;
+      margin-bottom: 14px;
+      line-height: 1.5;
+      color: var(--color-texto);
+    }
+
+    .autor-testimonio {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--color-acento);
+      letter-spacing: 0.02em;
+    }
+
+    /* ---------------------------------------------------------------------
+       SECCIÓN "CONTACTO"
+       --------------------------------------------------------------------- */
+    .contacto {
+      background-color: var(--color-superficie);
+    }
+
+    .contacto-interna {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .tarjetas-contacto {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .tarjeta-contacto {
+      background-color: var(--color-fondo);
+      border-radius: var(--radio-borde);
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: var(--sombra-elegante);
+      transition: var(--transicion);
+    }
+    .tarjeta-contacto:hover {
+      transform: translateY(-4px);
+      border-color: var(--color-acento);
+    }
+
+    .tarjeta-contacto .icono-SVG {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background-color: var(--color-acento-claro);
+      color: var(--color-acento);
+    }
+
+    .tarjeta-contacto h3 {
+      font-size: 1.1rem;
+      color: var(--color-blanco);
+    }
+
+    .tarjeta-contacto p {
+      font-size: 0.9rem;
+      color: var(--color-texto-suave);
+    }
+
+    /* ---------------------------------------------------------------------
+       PIE DE PÁGINA 
+       --------------------------------------------------------------------- */
+    footer {
+      background-color: #0b0b0b;
+      color: var(--color-texto-suave);
+      padding: 48px 32px;
+      text-align: center;
+      font-size: 0.88rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    footer a {
+      color: var(--color-acento);
+      font-weight: 600;
+    }
+
+    /* ---------------------------------------------------------------------
+       BOTÓN FLOTANTE DE WHATSAPP
+       --------------------------------------------------------------------- */
+    .whatsapp-flotante {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #25D366;
+      color: #FFFFFF;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.35);
+      z-index: 1000;
+      transition: var(--transicion);
+    }
+    .whatsapp-flotante:hover {
+      transform: scale(1.08) rotate(8deg);
+    }
+
+    /* ---------------------------------------------------------------------
+       
+       --------------------------------------------------------------------- */
+    @media (max-width: 768px) {
+      .hero-interna,
+      .sobre-interna {
+        grid-template-columns: 1fr;
+      }
+      .hero-imagen {
+        order: -1;
+      }
+      .menu-links {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!--
+    ==========================================================================
+    1. BARRA DE NAVEGACIÓN
+    Contiene el nombre del negocio y los "botones de sección": enlaces que
+    llevan a cada parte de la página usando el atributo href="#id-de-seccion"
+    ==========================================================================
+  -->
+  <header class="barra-navegacion">
+    <nav class="nav-interna">
+	<div class="logo-negocio">
+  <a href="#inicio">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjdQJxvR5gsDl8uWM1y1iPbOa1H0Tn8aSXF2FxaJ7o8g&s=10" alt="Logo Café El Sabor del Arte" style="height: 40px; width: auto; display: block;">
+  </a>
+ Cafetería El Sabor del Arte</div>
+      <!-- Cambie el emoji y el nombre por el logo/nombre de su propio negocio -->
+
+      <ul class="menu-links">
+        <!-- Cada <li><a href="#id"> es un "botón" que lleva a una sección distinta -->
+        <li><a href="#sobre-nosotros">Nosotros</a></li>
+        <li><a href="#experiencia">Experiencia</a></li>
+        <li><a href="#productos">Menú</a></li>
+        <li><a href="#testimonios">Opiniones</a></li>
+        <li><a href="#contacto">Contactenos y Visítenos</a></li>
+		<!--
+            Botón de correo electrónico: usa el enlace especial "mailto:"
+            Al hacer clic, se abre el programa de correo del visitante con
+            el destinatario y el asunto ya escritos.
+          -->
+          <a class="boton boton-secundario" href="mailto:cafeelsabordelarte@gmail.com?subject=Consulta%20desde%20la%20p%C3%A1gina%20web&body=Hola%2C%20tengo%20una%20consulta" style="padding: 6px 12px; font-size: 0.85rem;">
+            ✉️ Escríbanos
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <!--
+    ==========================================================================
+    2. SECCIÓN "HERO"
+    Es lo primero que ve el visitante. Debe responder rápido: ¿qué vende
+    este negocio y por qué debería interesarme?
+    ==========================================================================
+  -->
+  <section class="hero" id="inicio">
+    <div class="hero-interna">
+      <div>
+        <span class="hero-etiqueta">Cantón Simocol, Nebaj,Quiché</span>
+        <!-- La etiqueta da contexto rápido: tipo de negocio y ubicación -->
+
+        <h1>Disfruta un buen café bajo el sol o una bebida fría que refresque tu día</h1>
+        <!-- El título principal (h1) debe ser claro y decir el beneficio, no solo el nombre -->
+
+        <p>
+          Un ambiente tranquilo, silencioso y con melodías elegantes para relajarte, leer un buen libro y disfrutar de la mejor repostería artesanal.
+        </p>
+
+        <div class="grupo-botones">
+          <!--
+            Botón principal de WhatsApp: usa el enlace "https://wa.me/NUMERO"
+            Reemplace 50212345678 por el número real de WhatsApp del negocio,
+            con código de país y SIN signos de + ni espacios.
+            El texto después de "?text=" es el mensaje que aparecerá ya escrito.
+          -->
+          <a class="boton boton-whatsapp" href="https://wa.me/50233152994?text=Hola%2C%20deseo%20hacer%20un%20pedido%20en%20El%20Sabor%20del%20Arte" target="_blank" rel="noopener">
+            <!-- Icono SVG oficial de WhatsApp -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></path></svg>
+            Pedir por WhatsApp
+          </a>
+
+          <!--
+            Botón secundario: lleva a la sección de productos usando el
+            mismo sistema de href="#id" que vimos en el menú de arriba.
+          -->
+          <a class="boton boton-secundario" href="#productos">
+            Ver Menú Completo
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-imagen">
+        <!--
+          Reemplace la ruta "src" por la foto real de su producto.
+          El atributo "alt" describe la imagen: es importante para
+          personas con discapacidad visual y para que Google entienda
+          la imagen.
+        -->
+        <img src="https://thumbs.dreamstime.com/b/un-refrescante-vaso-de-caf%C3%A9-fr%C3%ADo-helado-con-leche-y-cubos-hielo-en-d%C3%ADa-soleado-capturados-esta-bebida-es-perfecta-para-el-clima-323041461.jpg" alt="Café helado refrescante con hielo y leche en una tarde soleada">
+      </div>
+    </div>
+  </section>
+
+  <!--
+    ==========================================================================
+    3. SECCIÓN "SOBRE NOSOTROS"
+    Genera confianza: quién está detrás del negocio y por qué es distinto.
+    ==========================================================================
+  -->
+  <section class="sobre-nosotros" id="sobre-nosotros">
+    <div class="sobre-interna">
+      <div class="hero-imagen">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTDKUC9HNYWS_bDebucAMvfg6585WAblbQ076iwdosLxRUmJmP86d9ETU&s=10" alt="Interior acogedor y silencioso de la cafetería con libros y café">
+      </div>
+
+      <div>
+        <span class="eyebrow">Nuestro Propósito</span>
+        <h2>Un espacio pensado para tu tranquilidad y descanso</h2>
+        <p style="color: var(--color-texto-suave); margin-bottom: 16px;">
+          Sabemos que durante el día el sol calienta fuerte y a veces buscas un respiro. Por eso, además de nuestros tradicionals cafés calientes, contamos con una amplia variedad de **cafés fríos y frappés** para refrescarte al instante.
+        </p>
+
+        <!-- Lista de valores del negocio: use viñetas cortas y fáciles de leer -->
+        <ul class="lista-valores">
+          <li>Horario amplio: Lunes a viernes de 7:00 AM a 9:00 PM</li>
+          <li>Fines de semana: Sábados y domingos de 6:00 PM a 9:00 PM</li>
+          <li>Ambiente silencioso, limpio y con melodías instrumentales elegantes</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+<!--
+    ==========================================================================
+    4. SECCIÓN "PRODUCTOS"
+    Cada tarjeta representa UN producto, con imagen, nombre, precio y un
+    botón para comprar o pedir. Puede copiar y pegar una tarjeta completa
+    para agregar más productos.
+    ==========================================================================
+  -->
+  
+  <section class="experiencia" id="experiencia">
+    <div class="titulo-seccion">
+      <span class="eyebrow">Beneficios Exclusivos</span>
+      <h2>Todo lo que tenemos para acompañar tu visita</h2>
+      <p style="color: var(--color-texto-suave);">Pensamos en cada detalle para que tu estancia sea verdaderamente placentera.</p>
+    </div>
+
+    <div class="cuadricula-beneficios">
+      <div class="tarjeta-beneficio">
+      <div class="icono-beneficio"></div>
+        <h3>Biblioteca a tu Disposición</h3>
+        <p>Contamos con una estantería llena de libros de literatura, novelas y ensayos disponibles para que los leyas cómodamente mientras disfrutas tu bebida.</p>
+      </div>
+
+      <div class="tarjeta-beneficio">
+        <div class="icono-beneficio"></div>
+        <h3>Melodías Elegantes</h3>
+        <p>Música instrumental de fondo cuidadosamente seleccionada para mantener un ambiente de paz, ideal para estudiar, platicar o relajarse en silencio.</p>
+      </div>
+
+      <div class="tarjeta-beneficio">
+        <div class="icono-beneficio"></div>
+        <h3>Café Frío contra el Sol</h3>
+        <p>Ideal para las tardes calurosas. Disfruta de frappés, cold brews y bebidas heladas preparadas al momento para refrescarte con estilo.</p>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="productos" id="productos">
+    <div class="titulo-seccion">
+      <span class="eyebrow">Nuestro Menú</span>
+      <h2>Cafés calientes, fríos, pan y pasteles artesanales</h2>
+      <p style="color: var(--color-texto-suave);">Elige entre nuestra variedad de opciones para cada momento del día.</p>
+    </div>
+
+   
+    <div class="categoria-menu">
+      <h3 class="subtitulo-categoria"> Menú de Día (Cafés Fríos y Refrescantes)</h3>
+      <div class="cuadricula-productos">
+
+        
+        <div class="tarjeta-producto">
+          <div class="imagen-producto">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeiOR_VmYjj-1V6LAz9lf4qRHWSUILFecizKYtaC_V5g&s=10" alt="Cold Brew clásico">
+          </div>
+          <div class="info-producto">
+            <h3>Cold Brew Clásico</h3>
+            <p>Café extraído en frío durante 18 horas, servido con hielo para combatir el calor del día.</p>
+            <div class="fila-precio">
+              <span class="precio">Q25.00</span>
+              <a class="boton-comprar" href="https://wa.me/50233152994?text=Hola%2C%20deseo%20pedir%3A%20Cold%20Brew%20Cl%C3%A1sico" target="_blank" rel="noopener">Pedir</a>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="tarjeta-producto">
+          <div class="imagen-producto">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4oNeAd7mchAwnPt-qnB0magwna9xbADxIQIPXFXOeNngNxAMDhSo2Ok8&s=10" alt="Frappé de Café Mocha">
+          </div>
+          <div class="info-producto">
+            <h3>Frappé Mocha Helado</h3>
+            <p>Espresso licuado con hielo, leche fría y chocolate cremoso con crema batida arriba.</p>
+            <div class="fila-precio">
+              <span class="precio">Q30.00</span>
+              <a class="boton-comprar" href="https://wa.me/50233152994?text=Hola%2C%20deseo%20pedir%3A%20Frapp%C3%A9%20Mocha%20Helado" target="_blank" rel="noopener">Pedir</a>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="tarjeta-producto">
+          <div class="imagen-producto">
+            <img src="https://www.forkinthekitchen.com/wp-content/uploads/2022/08/220629.iced_.latte_.vanilla-9009.jpg" alt="Iced Latte Vainilla">
+          </div>
+          <div class="info-producto">
+            <h3>Iced Latte de Vainilla</h3>
+            <p>Leche fría, espresso doble y un toque de jarabe de vainilla natural sobre cubos de hielo.</p>
+            <div class="fila-precio">
+              <span class="precio">Q28.00</span>
+              <a class="boton-comprar" href="https://wa.me/50233152994?text=Hola%2C%20deseo%20pedir%3A%20Iced%20Latte%20de%20Vainilla" target="_blank" rel="noopener">Pedir</a>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="tarjeta-producto">
+          <div class="imagen-producto">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy2JA3eOzt2j2qHS6BH8WP6rqu_1EdFctJXIG8bRMdOg&s=10" alt="Té helado de durazno">
+          </div>
+          <div class="info-producto">
+            <h3>Té Helado Frutal</h3>
+            <p>Infusión fría de té negro con notas cítricas y durazno fresco para una tarde soleada.</p>
+            <div class="fila-precio">
+              <span class="precio">Q22.00</span>
+              <a class="boton-comprar" href="https://wa.me/50233152994?text=Hola%2C%20deseo%20pedir%3A%20T%C3%A9%20Helado%20Frutal" target="_blank" rel="noopener">Pedir</a>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="tarjeta-producto">
+          <div class="imagen-producto">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7q0-Tn9D59UU9ivD1evl13hW-7MgtTUUHqgjdZSiFJw&s=10" alt="Limonada con hierbabuena">
+          </div>
+          <div class="info-producto">
+            <h3>Limonada con Hierbabuena</h3>
+            <p>Bebida refrescante exprimida al momento con hojas frescas de menta y hielo frappé.</p>
+            <div class="fila-precio">
+              <span class="precio">Q20.00</span>
+              <a class="boton-comprar" href="https://wa.me/50233152994?text=Hola%2C%20deseo%20pedir%3A%20Limonada%20con%20Hierbabuena" target="_blank" rel="noopener">Pedir</a>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="tarjeta-producto">
+          <div class="imagen-producto">
+            <img src="https://i.blogs.es/313bb0/1/840_560.jpg" alt="Smoothie de frutos rojos">
+          </div>
+          <div class="info-producto">
+            <h3>Smoothie de Frutos Rojos</h3>
+            <p>Mix de fresas, moras y frambuesas naturales licuadas con yogurt ligero.</p>
+            <div class="fila-precio">
+              <span class="precio">Q26.00</span>
+              <a class="boton-comprar" href="https://wa.me/50233152994?text=Hola%2C%20deseo%20pedir%3A%20Smoothie%20de%20Frutos%20Rojos" target="_blank" rel="noopener">Pedir</a>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="tarjeta-producto">
+          <div class="imagen-producto">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFnw04QX_wyzOf8KoVqyyjN-3oI-f5xCu1TdDkx4YnzQ&s=10" alt="Panini fresco de pollo">
+          </div>
+          <div class="info-producto">
+            <h3>Panini Fresco de Pollo</h3>
+            <p>Pan artesanal crujiente relleno de pechuga desmenuzada, queso fundido y aderezo de la casa.</p>
+            <div class="fila-precio">
+              <span class="precio">Q32.00</span>
+              <a class="boton-comprar" href="https://wa.me/50233152994?text=Hola%2C%20deseo%20pedir%3A%20Panini%20Fresco%20de%20Pollo" target="_blank" rel="noopener">Pedir</a>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="tarjeta-producto">
+          <div class="imagen-producto">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmIMSNdZ9zIOZ1Qj4yWnwzeC10Mo7vusiRXK3mNRlYxA&s=10" alt="Croissant mantequilla">
+          </div>
+          <div class="info-producto">
+            <h3>Croissant de Mantequilla</h3>
+            <p>Hojaldre clásico crujiente por fuera y sumamente suave por dentro, horneado hoy.</p>
+            <div class="fila-precio">
+              <span class="precio">Q18.00</span>
+              <a class="boton-comprar" href="https://wa.me/50233152994?text=Hola%2C%20deseo%20pedir%3A%20Croissant%20de%20Mantequilla" target="_blank" rel="noopener">Pedir</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    
+    <div class="categoria-menu">
+      <h3 class="subtitulo-categoria"> Menú de Mediodía (Cafés Calientes y Repostería)</h3>
+      <div class="cuadricula-productos">
+
+        
+        <div class="tarjeta-producto">
+          <div class="imagen-producto">
+            <img src="https://st2.depositphotos.com/5355656/7824/i/950/depositphotos_78249960-stock-photo-hot-cafe-latte-and-coffee.jpg" alt="Café Latte caliente">
+          </div>
+          <div class="info-producto">
+            <h3>Café Latte Clásico</h3>
+            <p>Espresso de altura con leche vaporizada y una fina capa de espuma cremosa.</p>
+            <div class="fila-precio">
+              <span class="precio">Q22.00</span>
+              <a class="boton-comprar" href="https://wa.me/50233152994?text=Hola%2C%20deseo%20pedir%3A%20Caf%C3%A9%20Latte%20Cl%C3%A1sico" target="_blank" rel="noopener">Pedir</a>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="tarjeta-producto">
+          <div class="imagen-producto">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdEGkbR2iQuENFTBbBIttols9yHLXon4uLvxN4DDcDlQ&s=10" alt="Cappuccino tradicional">
+          </div>
+          <div class="info-producto">
+            <h3>Cappuccino Tradicional</h3>
+            <p>Partes iguales de espresso, leche vaporizada y abundante espuma con toque de cacao.</p>
+            <div class="fila-precio">
+              <span class="precio">Q25.00</span>
+              <a class="boton-comprar" href="https://wa.me/50233152994?text=Hola%2C%20deseo%20pedir%3A%20Cappuccino%20Tradicional" target="_blank" rel="noopener">Pedir</a>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="tarjeta-producto">
+          <div class="imagen-producto">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKxaAnB2RM8hSOSa16R-5EEEpWBEC1igI9SNaBcTlYZA&s=10" alt="Espresso doble">
+          </div>
+          <div class="info-producto">
+            <h3>Espresso Doble</h3>
+            <p>Cargado, intenso y directo. Para quienes disfrutan el sabor puro del grano guatemalteco.</p>
+            <div class="fila-precio">
+              <span class="precio">Q16.00</span>
+              <a class="boton-comprar" href="https://wa.me/50233152994?text=Hola%2C%20deseo%20pedir%3A%20Espresso%20Doble" target="_blank" rel="noopener">Pedir</a>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="tarjeta-producto">
+          <div class="imagen-producto">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi27G4UQRCEjjp9aF1GDVX8G54hrNpi28TNHtFXffXQg&s=10" alt="Café filtrado V60">
+          </div>
+          <div class="info-producto">
+            <h3>Café Filtrado V60</h3>
+            <p>Método artesanal de goteo que realza las notas aromáticas más limpias del café.</p>
+            <div class="fila-precio">
+              <span class="precio">Q24.00</span>
+              <a class="boton-comprar" href="https://wa.me/50233152994?text=Hola%2C%20deseo%20pedir%3A%20Caf%C3%A9%20Filtrado%20V60" target="_blank" rel="noopener">Pedir</a>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="tarjeta-producto">
+          <div class="imagen-producto">
+            <img src="https://thumbs.dreamstime.com/b/rebanadas-de-pan-masa-madre-tostado-en-un-plato-con-romero-y-fondo-madera-r%C3%BAstica-436283233.jpg" alt="Pan tostado de masa madre">
+          </div>
+          <div class="info-producto">
+            <h3>Tostada de Masa Madre</h3>
+            <p>Pan rústico de larga fermentación con aguacate machacado, aceite de oliva y sal marina.</p>
+            <div class="fila-precio">
+              <span class="precio">Q22.00</span>
+              <a class="boton-comprar" href="https://wa.me/50233152994?text=Hola%2C%20deseo%20pedir%3A%20Tostada%20de%20Masa%20Madre" target="_blank" rel="noopener">Pedir</a>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="tarjeta-producto">
+          <div class="imagen-producto">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsPkSUTUVIJRHGhEcdpQgSVqpGmwuJuNwbPY2tWnkgqA&s=10" alt="Pay de queso cremoso">
+          </div>
+          <div class="info-producto">
+            <h3>Pay de Queso Cremoso</h3>
+            <p>Porción generosa de pastel de queso estilo rústico con ligera capa de mermelada.</p>
+            <div class="fila-precio">
+              <span class="precio">Q26.00</span>
+              <a class="boton-comprar" href="https://wa.me/50233152994?text=Hola%2C%20deseo%20pedir%3A%20Pay%20de%20Queso%20Cremoso" target="_blank" rel="noopener">Pedir</a>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="tarjeta-producto">
+          <div class="imagen-producto">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6jwg11V_ZOffi0oJsyP2rlVw8Sn6pbKK8b6O-3QRpxg&s=10" alt="Pastel de chocolate húmedo">
+          </div>
+          <div class="info-producto">
+            <h3>Pastel Húmedo de Chocolate</h3>
+            <p>Bizcocho de chocolate intenso con capas de fudge y cacao puro de la región.</p>
+            <div class="fila-precio">
+              <span class="precio">Q28.00</span>
+              <a class="boton-comprar" href="https://wa.me/50233152994?text=Hola%2C%20deseo%20pedir%3A%20Pastel%20H%C3%BAmedo%20de%20Chocolate" target="_blank" rel="noopener">Pedir</a>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="tarjeta-producto">
+          <div class="imagen-producto">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOheExrUiERwqzBW855YJ3O1-d1HMkhtNckD5CGZxWlw&s=10" alt="Pan dulce tradicional con café">
+          </div>
+          <div class="info-producto">
+            <h3>Pan Dulce Artesanal</h3>
+            <p>Pieza de pan dulce horneada en casa, ideal para acompañar tu taza humeante.</p>
+            <div class="fila-precio">
+              <span class="precio">Q10.00</span>
+              <a class="boton-comprar" href="https://wa.me/50233152994?text=Hola%2C%20deseo%20pedir%3A%20Pan%20Dulce%20Artesanal" target="_blank" rel="noopener">Pedir</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    
+    <div class="categoria-menu">
+      <h3 class="subtitulo-categoria"> Menú de Noche (Bebidas Cálidas y Repostería Fina)</h3>
+      <div class="cuadricula-productos">
+
+        
+        <div class="tarjeta-producto">
+          <div class="imagen-producto">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHkvam49mF0i18nK_9VnR_L65s1JYLGjTa2LkiN8BqHg&s=10" alt="Chocolate caliente tradicional">
+          </div>
+          <div class="info-producto">
+            <h3>Chocolate Caliente Nebajeño</h3>
+            <p>Cacao tradicional preparado lentamente con leche caliente, canela y un toque de anís.</p>
+            <div class="fila-precio">
+              <span class="precio">Q20.00</span>
+              <a class="boton-comprar" href="https://wa.me/50233152994?text=Hola%2C%20deseo%20pedir%3A%20Chocolate%20Caliente%20Nebaje%C3%B1o" target="_blank" rel="noopener">Pedir</a>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="tarjeta-producto">
+          <div class="imagen-producto">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7daGA6n4Nyhav7kVhM01RjqKIjuE0Itg4U5emGte6eNLftmT3HHAgGyXH&s=10" alt="Té chai especiado caliente">
+          </div>
+          <div class="info-producto">
+            <h3>Té Chai Especiado Caliente</h3>
+            <p>Infusión reconfortante de especias orientales, té negro y leche espumada.</p>
+            <div class="fila-precio">
+              <span class="precio">Q22.00</span>
+              <a class="boton-comprar" href="https://wa.me/50233152994?text=Hola%2C%20deseo%20pedir%3A%20T%C3%A9%20Chai%20Especiado%20Caliente" target="_blank" rel="noopener">Pedir</a>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="tarjeta-producto">
+          <div class="imagen-producto">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ80PqbZ2rS5b1oN8wyCaLfQNLFOo-z64qbpnJVmQ3EOg&s=10" alt="Café Mocha caliente">
+          </div>
+          <div class="info-producto">
+            <h3>Café Mocha Nocturno</h3>
+            <p>Espresso, chocolate oscuro derretido y leche caliente para terminar la jornada con gusto.</p>
+            <div class="fila-precio">
+              <span class="precio">Q28.00</span>
+              <a class="boton-comprar" href="https://wa.me/50233152994?text=Hola%2C%20deseo%20pedir%3A%20Caf%C3%A9%20Mocha%20Nocturno" target="_blank" rel="noopener">Pedir</a>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="tarjeta-producto">
+          <div class="imagen-producto">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZqIUs4dxNXkBXpGAWIFV8oZoAe2S_YX_3_5jXwoONFA&s=10" alt="Infusión de manzanilla y hierbas">
+          </div>
+          <div class="info-producto">
+            <h3>Infusión Relajante de Hierbas</h3>
+            <p>Manzanilla, menta y flor de tila para relajar el cuerpo antes de regresar a casa.</p>
+            <div class="fila-precio">
+              <span class="precio">Q18.00</span>
+              <a class="boton-comprar" href="https://wa.me/50233152994?text=Hola%2C%20deseo%20pedir%3A%20Infusi%C3%B3n%20Relajante%20de%20Hierbas" target="_blank" rel="noopener">Pedir</a>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="tarjeta-producto">
+          <div class="imagen-producto">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwGEeKm_hXizXLfkdvEDmz0vjo6BbASAaQP0ztFfQZ9w&s=10" alt="Pastel de zanahoria">
+          </div>
+          <div class="info-producto">
+            <h3>Pastel de Zanahoria Especiado</h3>
+            <p>Bizcocho suave de zanahoria con nueces trituradas y cobertura cremosa de queso.</p>
+            <div class="fila-precio">
+              <span class="precio">Q25.00</span>
+              <a class="boton-comprar" href="https://wa.me/50233152994?text=Hola%2C%20deseo%20pedir%3A%20Pastel%20de%20Zanahoria" target="_blank" rel="noopener">Pedir</a>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="tarjeta-producto">
+          <div class="imagen-producto">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWrPYdgRrI4j0sR7wk_xmiOQUC8DK2mh98XQrjLAIqZg&s=10" alt="Pay de manzana caliente">
+          </div>
+          <div class="info-producto">
+            <h3>Pay de Manzana Caliente</h3>
+            <p>Manzanas horneadas con canela dentro de una costra crujiente de hojaldre dulce.</p>
+            <div class="fila-precio">
+              <span class="precio">Q24.00</span>
+              <a class="boton-comprar" href="https://wa.me/50233152994?text=Hola%2C%20deseo%20pedir%3A%20Pay%20de%20Manzana" target="_blank" rel="noopener">Pedir</a>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="tarjeta-producto">
+          <div class="imagen-producto">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7rCnOxjZd1BC_j86JhkQ_qVZTY4uzWzZ7UVSXQu2DKA&s=10" alt="Brownie con nueces">
+          </div>
+          <div class="info-producto">
+            <h3>Brownie Fudge con Nueces</h3>
+            <p>Cuadrado de chocolate denso y jugoso con trocitos de nuez tostada.</p>
+            <div class="fila-precio">
+              <span class="precio">Q20.00</span>
+              <a class="boton-comprar" href="https://wa.me/50233152994?text=Hola%2C%20deseo%20pedir%3A%20Brownie%20Fudge" target="_blank" rel="noopener">Pedir</a>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="tarjeta-producto">
+          <div class="imagen-producto">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmKgsO2E5SH7-A70iHoNye_pzFxAVCJPqWMNCCl6LJAg&s=10" alt="Panini dulce de temporada">
+          </div>
+          <div class="info-producto">
+            <h3>Panini Dulce con Queso Crema</h3>
+            <p>Pan tostado relleno de queso crema suave y mermelada casera de fresa.</p>
+            <div class="fila-precio">
+              <span class="precio">Q22.00</span>
+              <a class="boton-comprar" href="https://wa.me/50233152994?text=Hola%2C%20deseo%20pedir%3A%20Panini%20Dulce" target="_blank" rel="noopener">Pedir</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!--
+    ==========================================================================
+    5. SECCIÓN "TESTIMONIOS"
+    Mostrar opiniones reales (o representativas) de clientes genera
+    confianza en quien todavía no ha comprado.
+    ==========================================================================
+  -->
+  <section class="testimonios" id="testimonios">
+    <div class="titulo-seccion">
+      <span class="eyebrow">Opiniones de la Comunidad</span>
+      <h2>Lo que dicen nuestros clientes</h2>
+    </div>
+
+    <div class="cuadricula-testimonios">
+      
+      <div class="tarjeta-testimonio especial">
+        <p class="cita">"La estructura y el diseño de este sitio web reflejan un excelente trabajo técnico. Da gusto ver proyectos elaborados con tanta dedicación."</p>
+        <p class="autor-testimonio">— Benjamín Tello, Profesor y Programador</p>
+      </div>
+
+      
+      <div class="tarjeta-testimonio">
+        <p class="cita">"Me encanta venir a leer por la tarde. El lugar es súper tranquilo, nadie te molesta y los cafés fríos son buenísimos para quitar el calor."</p>
+        <p class="autor-testimonio">— Misael Sánchez, Cliente Frecuente</p>
+      </div>
+
+      
+      <div class="tarjeta-testimonio">
+        <p class="cita">"Los pasteles son deliciosos y siempre frescos. Pedí un pay de queso con mi café y la combinación estuvo perfecta."</p>
+        <p class="autor-testimonio">— Saraí Mendoza, Estudiante</p>
+      </div>
+
+     
+      <div class="tarjeta-testimonio">
+        <p class="cita">"Excelente atención y muy buena música ambiental. Es de los pocos lugares en Nebaj donde de verdad se puede platicar a gusto."</p>
+        <p class="autor-testimonio">— Josué Cifuentes, Diseñador</p>
+      </div>
+
+     
+      <div class="tarjeta-testimonio">
+        <p class="cita">"Tienen una estantería con libros muy interesantes. Me pedí un chocolate caliente y me puse a leer un rato. Excelente experiencia."</p>
+        <p class="autor-testimonio">— Daniel Méndez, Lector</p>
+      </div>
+
+     
+      <div class="tarjeta-testimonio">
+        <p class="cita">"El pan dulce con el café caliente por la noche es mi combinación favorita para terminar el día relajado."</p>
+        <p class="autor-testimonio">— Werner Chel, Contador y Profesor</p>
+      </div>
+
+      
+      <div class="tarjeta-testimonio">
+        <p class="cita">"Muy limpio, ordenado y con precios accesibles. Da gusto apoyar negocios locales que se esmeran tanto."</p>
+        <p class="autor-testimonio">— Carlos Mendoza, Comerciante</p>
+      </div>
+
+      
+      <div class="tarjeta-testimonio">
+        <p class="cita">"El frappé mocha es mi debilidad. Vengo casi todos los fines de semana con mis amigos a platicar un rato."</p>
+        <p class="autor-testimonio">— Walter Rodriguez, Estudiante</p>
+      </div>
+
+     
+      <div class="tarjeta-testimonio">
+        <p class="cita">"Un lugar súper acogedor, con una paz increíble y excelente café. Vale la pena visitarlo cualquier día."</p>
+        <p class="autor-testimonio">— Fernando Pérez, Visitante</p>
+      </div>
+    </div>
+  </section>
+
+  <!--
+    ==========================================================================
+    6. SECCIÓN "CONNTACTO"
+    Reúne todas las formas de contactar al negocio: WhatsApp, correo y
+    ubicación. Es normal repetir el botón de WhatsApp aquí también, porque
+    es el canal más usado en Guatemala para hacer pedidos.
+    ==========================================================================
+  -->
+  <section class="contacto" id="contacto">
+    <div class="contacto-interna">
+      <div class="titulo-seccion">
+        <span class="eyebrow">Encuéntranos</span>
+        <h2>Visítenos o escríbanos</h2>
+        <p style="color: var(--color-texto-suave);">Abierto de lunes a viernes (7:00 AM a 9:00 PM) y fines de semana (6:00 PM a 9:00 PM).</p>
+      </div>
+
+      <div class="tarjetas-contacto">
+        <!-- Tarjeta de WhatsApp con icono SVG oficial -->
+        <div class="tarjeta-contacto">
+          <div class="icono-SVG">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></path></svg>
+          </div>
+          <h3>WhatsApp</h3>
+          <p>+502 3315-2994</p>
+          <a class="boton boton-whatsapp" href="https://wa.me/50233152994?text=Hola%2C%20tengo%20una%20consulta" target="_blank" rel="noopener" style="padding: 6px 14px; font-size: 0.82rem;">Escribir</a>
+        </div>
+
+        <!-- Tarjeta de correo electrónico con icono SVG de Gmail/Correo -->
+        <div class="tarjeta-contacto">
+          <div class="icono-SVG">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          </div>
+          <h3>Correo</h3>
+          <p>cafeelsabordelarte@gmail.com</p>
+          <a class="boton boton-secundario" href="mailto:cafeelsabordelarte@gmail.com?subject=Consulta%20desde%20la%20p%C3%A1gina%20web&body=Hola%2C%20tengo%20una%20consulta" style="padding: 6px 14px; font-size: 0.82rem;">Enviar</a>
+        </div>
+
+
+        <!-- Tarjeta de ubicación con icono SVG elegante de mapa -->
+        <div class="tarjeta-contacto">
+          <div class="icono-SVG">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          </div>
+          <h3>Ubicación</h3>
+          <p>Cantón Simocol, Nebaj, Quiché</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--
+    ==========================================================================
+    7. PIE DE PÁGINA 
+    Información legal/general y créditos. Suele ir el año actual, redes
+    sociales y datos de contacto adicionales.
+    ==========================================================================
+  -->
+  <footer>
+    <p>&copy; 2026 Cafetería El Sabor del Arte. Todos los derechos reservados.</p>
+    <p style="margin-top:8px;">
+      PAGINA DESARROLLADO POR GABRIEL SAMBRANO MARROQUÍN Y EDWIN MIGUEL SÁNCHEZ SÁNCHEZ ·
+      <a href="mailto:cafeelsabordelarte@Gmail.com">cafeelsabordelarte@Gmail.com</a>
+    </p>
+  </footer>
+
+  <!--
+    ==========================================================================
+    8. BOTÓN FLOTANTE DE WHATSAPP
+    Se coloca FUERA de las demás secciones (después del footer) porque su
+    posición es "fixed": no depende del lugar del documento donde esté
+    escrito, siempre se queda pegado a la esquina de la pantalla.
+    ==========================================================================
+  -->
+  <a class="whatsapp-flotante" href="https://wa.me/50233152994?text=Hola%2C%20quisiera%20más%20información%20con%20respecto%20a%20su%20menú" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+    <img src="https://www.revistacabal.coop/sites/www.revistacabal.coop/files/styles/nota_detalle/public/mensajeria_0_0.jpg?itok=ETp8t6AU" alt="Café Mocha caliente">
+  </a>
+
+  <!--
+    ==========================================================================
+    NOTAS FINALES PARA EL ESTUDIANTE
+    ==========================================================================
+    1. Para cambiar el número de WhatsApp: reemplace "50212345678" en TODOS
+       los enlaces "https://wa.me/..." de este archivo (use Ctrl+F / Buscar
+       y reemplazar en su editor de código).
+    2. Para cambiar el correo: reemplace "" en los
+       enlaces "mailto:".
+    3. Para cambiar los colores: modifique los valores dentro de ":root" en
+       la sección <style>, cerca del inicio del archivo.
+    4. Para agregar más productos: copie un bloque <div class="tarjeta-producto">
+       completo (dentro de la sección "productos") y edite el texto, la
+       imagen y el precio.
+    5. Para agregar más secciones al menú: agregue un nuevo
+       <li><a href="#nombre-seccion">Texto</a></li> en el menú, y cree una
+       nueva <section id="nombre-seccion"> más abajo con ese mismo id.
+    6. Las imágenes de este ejemplo vienen de Unsplash (banco de imágenes
+       gratuito). Para su negocio real, reemplácelas por fotos propias.
+    ==========================================================================
+  -->
+
+</body>
+</html>
